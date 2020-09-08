@@ -12,11 +12,10 @@ TESTDATA = 'resources/testdata.json'
 SITE = jsonGetter.GetJson.getFile(CONFIG, "SITE")
 testdata1 = jsonGetter.GetJson.getFile(TESTDATA, "testdata1")
 
-r = requests.Request() #some creditals
+r = requests.Request()
 
 #@pytest.mark.usefixtures("get_driver")
 class TestSuite1:
-    @pytest.mark.parametrize("login, password, token", testdata1)
     #@pytestrail.case('C19380774')
     def test_one(self):
         r.minProcessTime()

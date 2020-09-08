@@ -1,0 +1,9 @@
+{
+    "creditals":
+  {
+        "host": "localhost",
+        "user": "root",
+        "passwd" : "admin",
+        "database": "union_reporting"
+  }
+}
