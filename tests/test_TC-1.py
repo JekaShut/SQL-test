@@ -19,6 +19,7 @@ class TestSuite1:
     #@pytestrail.case('C19380774')
     def test_one(self):
         r.minProcessTime()
+        r.unicTests()
 
 
 
