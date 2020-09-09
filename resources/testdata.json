@@ -1,7 +1,7 @@
 {
-  "testdata1": [
-    [
-      "YOUR_EMAIL", "YOUR_PASSWORD", "CONFIRMATION_TOKEN"
-    ]
-  ]
+  "testdata1":
+  {
+
+  }
+
 }

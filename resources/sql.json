@@ -5,5 +5,11 @@
         "user": "root",
         "passwd" : "admin",
         "database": "union_reporting"
+  },
+  "data":
+  {
+        "date" : "2015-11-07",
+        "firefox": "firefox",
+        "chrome": "chrome"
   }
 }
