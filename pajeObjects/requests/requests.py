@@ -13,16 +13,16 @@ sql = SQLUtils.SQL(host=creditals.get("host"),
              database=creditals.get("database")
              )
 
-class Request:
-    def __init__(self):
-        self.MIN_PROCESS_TIME = "SELECT project.name, test.name, test.end_time - test.start_time as min_time FROM test JOIN project ON test.project_id=project.id ORDER BY project.name, test.name;"
-        self.UNIC_TESTS = "SELECT project.name, COUNT(DISTINCT test.name) AS num_tests FROM project JOIN test ON project.id = test.project_id GROUP BY project.name"
-        self.TESTS_AFTER2015 = 'SELECT project.name AS project, test.name AS test, test.start_time AS time FROM project JOIN test ON test.project_id = project.id WHERE test.start_time > "2015-11-07" ORDER BY project.name, test.name'
-        self.TESTS_FIREFOX_CHROME = "SELECT COUNT(test.id) AS Browsers FROM test WHERE test.browser = 'chrome' UNION SELECT COUNT(test.id) FROM test WHERE test.browser = 'firefox'"
 
+MIN_PROCESS_TIME = "SELECT project.name, test.name, test.end_time - test.start_time as min_time FROM test JOIN project ON test.project_id=project.id ORDER BY project.name, test.name;"
+UNIC_TESTS = "SELECT project.name, COUNT(DISTINCT test.name) AS num_tests FROM project JOIN test ON project.id = test.project_id GROUP BY project.name"
+TESTS_AFTER2015 = 'SELECT project.name AS project, test.name AS test, test.start_time AS time FROM project JOIN test ON test.project_id = project.id WHERE test.start_time > "2015-11-07" ORDER BY project.name, test.name'
+TESTS_FIREFOX_CHROME = "SELECT COUNT(test.id) AS Browsers FROM test WHERE test.browser = 'chrome' UNION SELECT COUNT(test.id) FROM test WHERE test.browser = 'firefox'"
+
+class Request:
     def minProcessTime(self):
         cursor = sql.connect()
-        result = sql.runscript(cursor, self.MIN_PROCESS_TIME)
+        result = sql.runscript(cursor, MIN_PROCESS_TIME)
         logger.info("\n________________MIN_PROCESS_TIME_START_________________\n")
         for x in result:
             logger.info(x)
@@ -32,7 +32,7 @@ class Request:
 
     def unicTests(self):
         cursor = sql.connect()
-        result = sql.runscript(cursor, self.UNIC_TESTS)
+        result = sql.runscript(cursor, UNIC_TESTS)
         logger.info("\n________________UNIC_TESTS_START_________________\n")
         for x in result:
             logger.info(x)
@@ -41,7 +41,7 @@ class Request:
 
     def TestsAfter(self):
         cursor = sql.connect()
-        result = sql.runscript(cursor, self.TESTS_AFTER2015)
+        result = sql.runscript(cursor, TESTS_AFTER2015)
         logger.info("\n________________TESTS_AFTER2015_START_________________\n")
         for x in result:
             logger.info(x)
@@ -50,7 +50,7 @@ class Request:
 
     def TestsByBrowsers(self):
         cursor = sql.connect()
-        result = sql.runscript(cursor, self.TESTS_FIREFOX_CHROME)
+        result = sql.runscript(cursor, TESTS_FIREFOX_CHROME)
         logger.info("\n________________TESTS_FIREFOX_CHROME_START_________________\n")
         for x in result:
             logger.info(x)
