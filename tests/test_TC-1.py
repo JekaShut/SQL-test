@@ -8,9 +8,8 @@ from framework.logger.logger import Logger
 logger = Logger(__file__).getlog()
 
 CONFIG = 'resources/config.json'
-TESTDATA = 'resources/testdata.json'
 SITE = jsonGetter.GetJson.getFile(CONFIG, "SITE")
-testdata1 = jsonGetter.GetJson.getFile(TESTDATA, "testdata1")
+
 
 r = requests.Request()
 
