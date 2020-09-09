@@ -17,7 +17,7 @@ class Request:
     def __init__(self):
         self.MIN_PROCESS_TIME = "SELECT project.name, test.name, test.end_time - test.start_time as min_time FROM test JOIN project ON test.project_id=project.id ORDER BY project.name, test.name;"
         self.UNIC_TESTS = "SELECT project.name, COUNT(DISTINCT test.name) AS num_tests FROM project JOIN test ON project.id = test.project_id GROUP BY project.name"
-        self.TESTS_AFTER2015 = ""
+        self.TESTS_AFTER2015 = 'SELECT project.name AS project, test.name AS test, test.start_time AS time FROM project JOIN test ON test.project_id = project.id WHERE test.start_time > "2015-11-07" ORDER BY project.name, test.name'
         self.TESTS_FIREFOX_CHROME = ""
 
     def minProcessTime(self):
@@ -37,6 +37,15 @@ class Request:
         for x in result:
             logger.info(x)
         logger.info("\n________________UNIC_TESTS_END_________________\n")
+        return result
+
+    def TestsAfter(self):
+        cursor = sql.connect()
+        result = sql.runscript(cursor, self.TESTS_AFTER2015)
+        logger.info("\n________________TESTS_AFTER2015_START_________________\n")
+        for x in result:
+            logger.info(x)
+        logger.info("\n________________TESTS_AFTER2015_END_________________\n")
         return result
 
 '''

@@ -20,6 +20,7 @@ class TestSuite1:
     def test_one(self):
         r.minProcessTime()
         r.unicTests()
+        r.TestsAfter()
 
 
 
