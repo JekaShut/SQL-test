@@ -21,6 +21,7 @@ class TestSuite1:
         r.minProcessTime()
         r.unicTests()
         r.TestsAfter()
+        r.TestsByBrowsers()
 
 
 
