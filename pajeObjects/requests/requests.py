@@ -59,6 +59,9 @@ class Request:
         logger.info("\n________________TESTS_FIREFOX_CHROME_END_________________\n")
         return result
 
+    def closeConnection(self):
+        sql.closeConnect()
+
 '''
 USE union_reporting;
 SELECT project.name

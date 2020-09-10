@@ -21,6 +21,8 @@ class TestSuite1:
         r.unicTests()
         r.TestsAfter()
         r.TestsByBrowsers()
+        r.closeConnection()
+
 
 
 

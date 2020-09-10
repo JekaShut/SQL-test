@@ -16,3 +16,6 @@ class SQL:
         cursor.execute(script)
         x = [x for x in cursor]
         return x
+
+    def closeConnect(self):
+        self.db.cursor().close()
