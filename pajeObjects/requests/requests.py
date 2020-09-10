@@ -23,7 +23,7 @@ TESTS_FIREFOX_CHROME = "SELECT COUNT(test.id) AS Browsers FROM test WHERE test.b
 
 class Request:
     def minProcessTime(self):
-        cursor = sql.connect()
+        cursor = sql.cursor()
         result = sql.runscript(cursor, MIN_PROCESS_TIME)
         logger.info("\n________________MIN_PROCESS_TIME_START_________________\n")
         for x in result:
@@ -33,7 +33,7 @@ class Request:
 
 
     def unicTests(self):
-        cursor = sql.connect()
+        cursor = sql.cursor()
         result = sql.runscript(cursor, UNIC_TESTS)
         logger.info("\n________________UNIC_TESTS_START_________________\n")
         for x in result:
@@ -42,7 +42,7 @@ class Request:
         return result
 
     def TestsAfter(self):
-        cursor = sql.connect()
+        cursor = sql.cursor()
         result = sql.runscript(cursor, TESTS_AFTER2015)
         logger.info("\n________________TESTS_AFTER2015_START_________________\n")
         for x in result:
@@ -51,7 +51,7 @@ class Request:
         return result
 
     def TestsByBrowsers(self):
-        cursor = sql.connect()
+        cursor = sql.cursor()
         result = sql.runscript(cursor, TESTS_FIREFOX_CHROME)
         logger.info("\n________________TESTS_FIREFOX_CHROME_START_________________\n")
         for x in result:

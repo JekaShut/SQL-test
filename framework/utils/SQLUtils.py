@@ -8,7 +8,7 @@ class SQL:
     def __init__(self, host, user, passwd, database):
         self.db = mysql.connector.connect(host=host, user=user, passwd=passwd, database=database)
 
-    def connect(self):
+    def cursor(self):
         result = self.db.cursor()
         return result
 
