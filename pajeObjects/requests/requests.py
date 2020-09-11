@@ -7,6 +7,7 @@ logger = Logger(__file__).getlog()
 SQLtest = 'resources/sql.json'
 creditals = jsonGetter.GetJson.getFile(SQLtest, "creditals")
 data = jsonGetter.GetJson.getFile(SQLtest, "data")
+sql_requests = jsonGetter.GetJson.getFile(SQLtest, "sql_requests")
 
 sql = SQLUtils.SQL(host=creditals.get("host"),
              user=creditals.get("user"),
@@ -14,11 +15,11 @@ sql = SQLUtils.SQL(host=creditals.get("host"),
              database=creditals.get("database")
              )
 
+MIN_PROCESS_TIME = sql_requests.get("MIN_PROCESS_TIME")
+UNIC_TESTS = sql_requests.get("UNIC_TESTS")
+TESTS_AFTER2015 = sql_requests.get("TESTS_AFTER2015")[0] + data.get("date") + sql_requests.get("TESTS_AFTER2015")[1]
+TESTS_FIREFOX_CHROME = sql_requests.get("TESTS_FIREFOX_CHROME")[0] + data.get("firefox") + sql_requests.get("TESTS_FIREFOX_CHROME")[1] + data.get("chrome") + sql_requests.get("TESTS_FIREFOX_CHROME")[2]
 
-MIN_PROCESS_TIME = "SELECT project.name, test.name, test.end_time - test.start_time as min_time FROM test JOIN project ON test.project_id=project.id ORDER BY project.name, test.name;"
-UNIC_TESTS = "SELECT project.name, COUNT(DISTINCT test.name) AS num_tests FROM project JOIN test ON project.id = test.project_id GROUP BY project.name"
-TESTS_AFTER2015 = 'SELECT project.name AS project, test.name AS test, test.start_time AS time FROM project JOIN test ON test.project_id = project.id WHERE test.start_time > '+ data.get("date") + ' ORDER BY project.name, test.name'
-TESTS_FIREFOX_CHROME = "SELECT COUNT(test.id) AS Browsers FROM test WHERE test.browser = '" + data.get("firefox") + "' UNION SELECT COUNT(test.id) FROM test WHERE test.browser = '" + data.get("chrome") + "'"
 
 
 class Request:

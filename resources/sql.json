@@ -11,5 +11,13 @@
         "date" : "2015-11-07",
         "firefox": "firefox",
         "chrome": "chrome"
+  },
+  "sql_requests":
+  {
+        "MIN_PROCESS_TIME" : "SELECT project.name, test.name, test.end_time - test.start_time as min_time FROM test JOIN project ON test.project_id=project.id ORDER BY project.name, test.name;",
+        "UNIC_TESTS" : "SELECT project.name, COUNT(DISTINCT test.name) AS num_tests FROM project JOIN test ON project.id = test.project_id GROUP BY project.name",
+        "TESTS_AFTER2015" : ["SELECT project.name AS project, test.name AS test, test.start_time AS time FROM project JOIN test ON test.project_id = project.id WHERE test.start_time > "," ORDER BY project.name, test.name"],
+        "TESTS_FIREFOX_CHROME" : ["SELECT COUNT(test.id) AS Browsers FROM test WHERE test.browser = '", "' UNION SELECT COUNT(test.id) FROM test WHERE test.browser = '", "'"]
+
   }
 }
