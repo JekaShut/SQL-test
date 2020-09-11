@@ -17,10 +17,10 @@ r = requests.Request()
 class TestSuite1:
     #@pytestrail.case('C19380774')
     def test_one(self):
-        r.minProcessTime()
-        r.unicTests()
-        r.TestsAfter()
-        r.TestsByBrowsers()
+        r.request_minProcessTime()
+        r.request_unicTests()
+        r.request_TestsAfter()
+        r.request_TestsByBrowsers()
         r.closeConnection()
 
 
